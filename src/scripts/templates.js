@@ -84,14 +84,14 @@ export function generatestoryItemTemplate({
   id,
   name,
   description,
-  photourl,
+  photoUrl,
   createdAt,
   lat,
   lon,
 }) {
   return `
     <div tabindex="0" class="story-item" data-storyid="${id}">
-      <img class="story-item__image" src="${photourl}" alt="${name}">
+      <img class="story-item__image" src="${photoUrl}" alt="${name}">
       <div class="story-item__body">
         <div class="story-item__main">
           <h2 id="story-title" class="story-item__title">${name}</h2>

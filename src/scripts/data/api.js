@@ -118,7 +118,9 @@ export async function storeNewStory({
   formData.set('description', description);
   formData.set('lat', latitude);
   formData.set('lon', longitude);
-  formData.set('photo', photo);
+  photo.forEach((photo) => {
+    formData.append('photo', photo);
+  });
 
 
   const fetchResponse = await fetch(ENDPOINTS.STORE_NEW_STORY, {

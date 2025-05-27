@@ -48,19 +48,14 @@ export default class HomePage {
     }
 
     const html = stories.reduce((accumulator, story) => {
-       if (this.#map) {
-      const coordinate = [story.latitude, story.longitude];
+       if (this.#map && story?.lat && story?.lon) {
+      const coordinate = [story?.lat, story?.lon];
       const markerOptions = { alt: story.title };
       const popupOptions = { content: story.title };
       this.#map.addMarker(coordinate, markerOptions, popupOptions);
     }
-      return accumulator.concat(
-        generatestoryItemTemplate({
-          ...story,
-         storyerName: story.name
-        }),
-      );
-    }, '');
+      return accumulator.concat( generatestoryItemTemplate(story));
+        },'');
 
     document.getElementById('stories-list').innerHTML = `
       <div class="stories-list">${html}</div>

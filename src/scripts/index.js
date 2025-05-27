@@ -15,6 +15,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     drawerNavigation: document.getElementById('navigation-drawer'),
     skipLinkButton: document.getElementById('skip-link'),
   });
+  const skipLink = document.getElementById('skip-link');
+  const mainContent = document.getElementById('main-content');
+  
+  skipLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    mainContent.focus();
+  });
+  skipLink.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      mainContent.focus();
+    }
+  });
   await app.renderPage();
 
   window.addEventListener('hashchange', async () => {
