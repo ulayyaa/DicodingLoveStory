@@ -35,16 +35,16 @@ export function generateAuthenticatedNavigationListTemplate() {
   `;
 }
 
-export function generatestoriesListEmptyTemplate() {
+export function generateStoriesListEmptyTemplate() {
   return `
     <div id="stories-list-empty" class="stories-list__empty">
-      <h2>Tidak ada laporan yang tersedia</h2>
-      <p>Saat ini, tidak ada laporan kerusakan fasilitas umum yang dapat ditampilkan.</p>
+      <h2>Tidak ada cerita yang tersedia</h2>
+      <p>Saat ini, tidak ada cerita orang orang yang dapat ditampilkan.</p>
     </div>
   `;
 }
 
-export function generatestoriesListErrorTemplate(message) {
+export function generateStoriesListErrorTemplate(message) {
   return `
     <div id="stories-list-error" class="stories-list__error">
       <h2>Terjadi kesalahan pengambilan daftar story</h2>
@@ -53,7 +53,7 @@ export function generatestoriesListErrorTemplate(message) {
   `;
 }
 
-export function generatestoryDetailErrorTemplate(message) {
+export function generateStoryDetailErrorTemplate(message) {
   return `
     <div id="stories-detail-error" class="stories-detail__error">
       <h2>Terjadi kesalahan pengambilan detail story</h2>
@@ -120,19 +120,19 @@ export function generatestoryItemTemplate({
   `;
 }
 
-export function generatestoryDetailImageTemplate(imageUrl = null, alt = '') {
-  if (!imageUrl) {
+export function generateStoryDetailImageTemplate(photoUrl = null, alt = '') {
+  if (!photoUrl) {
     return `
       <img class="story-detail__image" src="images/placeholder-image.jpg" alt="Placeholder Image">
     `;
   }
 
   return `
-    <img class="story-detail__image" src="${imageUrl}" alt="${alt}">
+    <img class="story-detail__image" src="$photoUrl}" alt="${alt}">
   `;
 }
 
-export function generatestoryCommentItemTemplate({ photoUrlCommenter, nameCommenter, body }) {
+export function generateStoryCommentItemTemplate({ photoUrlCommenter, nameCommenter, body }) {
   return `
     <article tabindex="0" class="story-detail__comment-item">
       <img
@@ -150,7 +150,7 @@ export function generatestoryCommentItemTemplate({ photoUrlCommenter, nameCommen
   `;
 }
 
-export function generatestoryDetailTemplate({
+export function generateStoryDetailTemplate({
   name,
   description,
   photoUrl,
@@ -179,7 +179,7 @@ export function generatestoryDetailTemplate({
         <div id="location-latitude" class="storydetail__location__latitude" data-value="${latitudeLocation}">Latitude:</div>
           <div id="location-longitude" class="storydetail__location__longitude" data-value="${longitudeLocation}">Longitude:</div>
         </div>
-        <div id="author" class="story-detail__author" data-value="${name}}">Dilaporkan oleh:</div>
+        <div id="author" class="story-detail__author" data-value="${name}}">Diceritakan oleh:</div>
       </div>
     </div>
 
@@ -239,7 +239,7 @@ export function generateUnsubscribeButtonTemplate() {
   `;
 }
 
-export function generateSavestoryButtonTemplate() {
+export function generateSaveStoryButtonTemplate() {
   return `
     <button id="story-detail-save" class="btn btn-transparent">
       Simpan laporan <i class="far fa-bookmark"></i>
@@ -247,7 +247,7 @@ export function generateSavestoryButtonTemplate() {
   `;
 }
 
-export function generateRemovestoryButtonTemplate() {
+export function generateRemoveStoryButtonTemplate() {
   return `
     <button id="story-detail-remove" class="btn btn-transparent">
       Buang laporan <i class="fas fa-bookmark"></i>

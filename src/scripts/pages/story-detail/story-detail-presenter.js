@@ -1,4 +1,4 @@
-import { storyapper } from '../../data/api-mapper';
+import { storyMapper } from '../../data/api-mapper';
 
 export default class storyDetailPresenter {
   #storyId;
@@ -11,35 +11,35 @@ export default class storyDetailPresenter {
     this.#apiModel = apiModel;
   }
 
-  async showstoryDetailMap() {
+  async showStoryDetailMap() {
     this.#view.showMapLoading();
     try {
       await this.#view.initialMap();
     } catch (error) {
-      console.error('showstoryDetailMap: error:', error);
+      console.error('showStoryDetailMap: error:', error);
     } finally {
       this.#view.hideMapLoading();
     }
   }
 
-  async showstoryDetail() {
-    this.#view.showstoryDetailLoading();
+  async showStoryDetail() {
+    this.#view.showStoryDetailLoading();
     try {
       const response = await this.#apiModel.getstoryById(this.#storyId);
 
       if (!response.ok) {
-        console.error('showstoryDetailAndMap: response:', response);
-        this.#view.populatestoryDetailError(response.message);
+        console.error('showStoryDetailAndMap: response:', response);
+        this.#view.populateStoryDetailError(response.message);
         return;
       }
       const story = await storyMapper(response.data);
       console.log(story); // for debugging purpose, remove after checking it
-      this.#view.populatestoryDetailAndInitialMap(response.message, story);
+      this.#view.populateStoryDetailAndInitialMap(response.message, story);
     } catch (error) {
-      console.error('showstoryDetail: error:', error);
-      this.#view.populatestoryDetailError(error.message);
+      console.error('showStoryDetail: error:', error);
+      this.#view.populateStoryDetailError(error.message);
     } finally {
-      this.#view.hidestoryDetailLoading();
+      this.#view.hideStoryDetailLoading();
     }
   }
 
@@ -67,12 +67,44 @@ export default class storyDetailPresenter {
         return;
       }
 
+      // No need to wait response
+      this.notifyStoryOwner(response.data.id);
+
       this.#view.postNewCommentSuccessfully(response.message, response.data);
     } catch (error) {
       console.error('postNewComment: error:', error);
       this.#view.postNewCommentFailed(error.message);
     } finally {
       this.#view.hideSubmitLoadingButton();
+    }
+  }
+
+  async notifyStoryOwner(commentId) {
+    try {
+      const response = await this.#apiModel.sendCommentToStoryOwnerViaNotification(
+        this.#storyId,
+        commentId,
+      );
+      if (!response.ok) {
+        console.error('notifyStoryOwner: response:', response);
+        return;
+      }
+      console.log('notifyStoryOwner:', response.message);
+    } catch (error) {
+      console.error('notifyStoryOwner: error:', error);
+    }
+  }
+
+   async notifyMe() {
+    try {
+      const response = await this.#apiModel.sendStoryToMeViaNotification(this.#storyId);
+      if (!response.ok) {
+        console.error('notifyMe: response:', response);
+        return;
+      }
+      console.log('notifyMe:', response.message);
+    } catch (error) {
+      console.error('notifyMe: error:', error);
     }
   }
 

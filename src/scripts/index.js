@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 
 // Components
 import App from './pages/app';
+import { registerServiceWorker } from './utils';
 import Camera from './utils/camera';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -29,7 +30,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
   await app.renderPage();
-
+await registerServiceWorker();
+// for demonstration purpose-only
+  console.log('Berhasil mendaftarkan service worker.');
+ 
   window.addEventListener('hashchange', async () => {
     await app.renderPage();
 

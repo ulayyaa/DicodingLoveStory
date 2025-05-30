@@ -2,11 +2,11 @@ import {
   generateCommentsListEmptyTemplate,
   generateCommentsListErrorTemplate,
   generateLoaderAbsoluteTemplate,
-  generateRemovestoryuttonTemplate,
-  generatestoryCommentItemTemplate,
-  generatestoryDetailErrorTemplate,
-  generatestoryetailTemplate,
-  generateSavestoryButtonTemplate,
+  generateRemoveStoryButtonTemplate,
+  generateStoryCommentItemTemplate,
+  generateStoryDetailErrorTemplate,
+  generateStoryDetailTemplate,
+  generateSaveStoryButtonTemplate,
 } from '../../templates';
 import { createCarousel } from '../../utils';
 import storyDetailPresenter from './story-detail-presenter';
@@ -34,7 +34,7 @@ export default class storyDetailPage {
           <div class="story-detail__comments-form__container">
             <h2 class="story-detail__comments-form__title">Beri Tanggapan</h2>
             <form id="comments-list-form" class="story-detail__comments-form__form">
-              <textarea name="body" placeholder="Beri tanggapan terkait laporan."></textarea>
+              <textarea name="body" placeholder="Beri tanggapan terkait cerita."></textarea>
               <div id="submit-button-container">
                 <button class="btn" type="submit">Tanggapi</button>
               </div>
@@ -58,12 +58,12 @@ export default class storyDetailPage {
 
     this.#setupForm();
 
-    this.#presenter.showstoryetail();
+    this.#presenter.showstorydetail();
     this.#presenter.getCommentsList();
   }
 
   async populatestoryDetailAndInitialMap(message, story) {
-    document.getElementById('story-detail').innerHTML = generatestoryDetailTemplate({
+    document.getElementById('story-detail').innerHTML = generateStoryDetailTemplate({
       title: story.title,
       description: story.description,
       photoUrl: story.photoUrl,
@@ -92,7 +92,7 @@ export default class storyDetailPage {
   }
 
   populatestoryDetailError(message) {
-    document.getElementById('storydetail').innerHTML = generatestoryDetailErrorTemplate(message);
+    document.getElementById('storydetail').innerHTML = generateStoryDetailErrorTemplate(message);
   }
 
   populatestoryDetailComments(message, comments) {
@@ -104,7 +104,7 @@ export default class storyDetailPage {
     const html = comments.reduce(
       (accumulator, comment) =>
         accumulator.concat(
-          generatestoryCommentItemTemplate({
+          generateStoryCommentItemTemplate({
             photoUrlCommenter: comment.commenter.photoUrl,
             nameCommenter: comment.commenter.name,
             body: comment.body,
@@ -163,7 +163,7 @@ export default class storyDetailPage {
 
   renderSaveButton() {
     document.getElementById('save-actions-container').innerHTML =
-      generateSavestoryButtonTemplate();
+      generateSaveStoryButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
       alert('Fitur simpan laporan akan segera hadir!');
@@ -172,7 +172,7 @@ export default class storyDetailPage {
 
   renderRemoveButton() {
     document.getElementById('save-actions-container').innerHTML =
-      generateRemovestoryButtonTemplate();
+      generateRemoveStoryButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {
       alert('Fitur simpan laporan akan segera hadir!');
@@ -181,6 +181,7 @@ export default class storyDetailPage {
 
   addNotifyMeEventListener() {
     document.getElementById('story-detail-notify-me').addEventListener('click', () => {
+      this.#presenter.notifyMe();
       alert('Fitur notifikasi laporan akan segera hadir!');
     });
   }
