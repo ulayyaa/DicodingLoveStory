@@ -13,6 +13,7 @@ import storyDetailPresenter from './story-detail-presenter';
 import { parseActivePathname } from '../../routes/url-parser';
 import Map from '../../utils/map';
 import * as DicodingLoveStoryAPI from '../../data/api';
+import Database from '../../data/database';
 
 export default class storyDetailPage {
   #presenter = null;
@@ -24,7 +25,7 @@ export default class storyDetailPage {
       <section>
         <div class="story-detail__container">
           <div id="story-detail" class="story-detail"></div>
-          <div id="storydetail-loading-container"></div>
+          <div id="story-detail-loading-container"></div>
         </div>
       </section>
       
@@ -54,6 +55,7 @@ export default class storyDetailPage {
     this.#presenter = new storyDetailPresenter(parseActivePathname().id, {
       view: this,
       apiModel: DicodingLoveStoryAPI,
+      dbModel: Database,
     });
 
     this.#setupForm();
@@ -62,14 +64,12 @@ export default class storyDetailPage {
     this.#presenter.getCommentsList();
   }
 
-  async populatestoryDetailAndInitialMap(message, story) {
+  async populateStoryDetailAndInitialMap(message, story) {
     document.getElementById('story-detail').innerHTML = generateStoryDetailTemplate({
       title: story.title,
       description: story.description,
       photoUrl: story.photoUrl,
       location: story.location,
-      latitudeLocation: story.latitude,
-      longitudeLocation: story.longitude,
       storyerName: story.name,
       createdAt: story.createdAt,
     });
@@ -166,8 +166,16 @@ export default class storyDetailPage {
       generateSaveStoryButtonTemplate();
 
     document.getElementById('story-detail-save').addEventListener('click', async () => {
-      alert('Fitur simpan laporan akan segera hadir!');
+      await this.#presenter.saveStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+ 
+  saveToBookmarkSuccessfully(message) {
+    console.log(message);
+  }
+  saveToBookmarkFailed(message) {
+    alert(message);
   }
 
   renderRemoveButton() {
@@ -175,8 +183,16 @@ export default class storyDetailPage {
       generateRemoveStoryButtonTemplate();
 
     document.getElementById('story-detail-remove').addEventListener('click', async () => {
-      alert('Fitur simpan laporan akan segera hadir!');
+      await this.#presenter.removeStory();
+      await this.#presenter.showSaveButton();
     });
+  }
+
+  removeFromBookmarkSuccessfully(message) {
+    console.log(message);
+  }
+  removeFromBookmarkFailed(message) {
+    alert(message);
   }
 
   addNotifyMeEventListener() {

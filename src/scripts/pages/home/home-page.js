@@ -1,8 +1,8 @@
 import {
   generateLoaderAbsoluteTemplate,
   generatestoryItemTemplate,
-  generatestoriesListEmptyTemplate,
-  generatestoriesListErrorTemplate,
+  generateStoriesListEmptyTemplate,
+  generateStoriesListErrorTemplate,
 } from '../../templates';
 import HomePresenter from './home-presenter';
 import Map from '../../utils/map';
@@ -62,11 +62,11 @@ export default class HomePage {
     `;
   }
 
-  populatestoriesListEmpty() {
+  populateStoriesListEmpty() {
     document.getElementById('stories-list').innerHTML = generatestoriesListEmptyTemplate();
   }
 
-  populatestoriesListError(message) {
+  populateStoriesListError(message) {
     document.getElementById('stories-list').innerHTML = generatestoriesListErrorTemplate(message);
   }
 
