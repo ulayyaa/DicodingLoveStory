@@ -80,7 +80,7 @@ export function generateCommentsListErrorTemplate(message) {
   `;
 }
 
-export function generatestoryItemTemplate({
+export function generateStoryItemTemplate({
   id,
   name,
   description,
@@ -128,7 +128,7 @@ export function generateStoryDetailImageTemplate(photoUrl = null, alt = '') {
   }
 
   return `
-    <img class="story-detail__image" src="$photoUrl}" alt="${alt}">
+    <img class="story-detail__image" src="${photoUrl}" alt="${alt}">
   `;
 }
 
@@ -154,41 +154,31 @@ export function generateStoryDetailTemplate({
   name,
   description,
   photoUrl,
-  location,
+  lat,
+  lon,
   createdAt,
 }) {
   const createdAtFormatted = showFormattedDate(createdAt, 'id-ID');
-  const imagesHtml = photoUrl.reduce(
-    (accumulator, photoUrl) =>
-      accumulator.concat(generatestoryDetailImageTemplate(photoUrl, name)),
-    '',
-  );
-
+  const imagesHtml = generateStoryDetailImageTemplate(photoUrl, name);
   return `
     <div class="story-detail__header">
       <h1 id="title" class="story-detail__title">${name}</h1>
-
       <div class="story-detail__more-info">
         <div class="story-detail__more-info__inline">
           <div id="createdat" class="story-detail__createdat" data-value="${createdAtFormatted}"><i class="fas fa-calendar-alt"></i></div>
-          <div id="location-place-name" class="storydetail__location__place-name" data-value="${location.placeName}"><i class="fas fa-map"></i></div>
         </div>
         <div class="story-detail__more-info__inline">
-        <div id="location-latitude" class="story-detail__location__latitude" data-value="${location.latitude}">Latitude:</div>
-        <div id="location-longitude" class="storydetail__location__longitude" data-value="${location.longitude}">Longitude:</div>
-        <div id="location-latitude" class="storydetail__location__latitude" data-value="${latitudeLocation}">Latitude:</div>
-          <div id="location-longitude" class="storydetail__location__longitude" data-value="${longitudeLocation}">Longitude:</div>
+        <div id="location-latitude" class="story-detail__location__latitude" data-value="${lat}">Latitude:</div>
+        <div id="location-longitude" class="story-detail__location__longitude" data-value="${lon}">Longitude:</div>
         </div>
-        <div id="author" class="story-detail__author" data-value="${name}}">Diceritakan oleh:</div>
+        <div id="author" class="story-detail__author" data-value="${name}">Diceritakan oleh:</div>
       </div>
     </div>
-
     <div class="container">
-      <div class="storydetail__images__container">
+      <div class="story-detail__images__container">
         <div id="images" class="story-detail__images">${imagesHtml}</div>
       </div>
     </div>
-
     <div class="container">
       <div class="story-detail__body">
         <div class="story-detail__body__description__container">

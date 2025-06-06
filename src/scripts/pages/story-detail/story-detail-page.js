@@ -60,25 +60,22 @@ export default class storyDetailPage {
 
     this.#setupForm();
 
-    this.#presenter.showstorydetail();
-    this.#presenter.getCommentsList();
+    this.#presenter.showStorydetail();
   }
 
   async populateStoryDetailAndInitialMap(message, story) {
     document.getElementById('story-detail').innerHTML = generateStoryDetailTemplate({
-      title: story.title,
+      name: story.name,
       description: story.description,
       photoUrl: story.photoUrl,
-      location: story.location,
-      storyerName: story.name,
+      lat: story.lat,
+      lon: story.lon,
       createdAt: story.createdAt,
     });
-
     // Carousel images
     createCarousel(document.getElementById('images'));
-
     // Map
-    await this.#presenter.showstoryDetailMap();
+    await this.#presenter.showStoryDetailMap();
     if (this.#map) {
     const storyCoordinate = [story.lat, story.lon];
     const markerOptions = { alt: story.title };
@@ -90,9 +87,8 @@ export default class storyDetailPage {
     this.#presenter.showSaveButton();
     this.addNotifyMeEventListener();
   }
-
-  populatestoryDetailError(message) {
-    document.getElementById('storydetail').innerHTML = generateStoryDetailErrorTemplate(message);
+  populateStoryDetailError(message) {
+    document.getElementById('story-detail').innerHTML = generateStoryDetailErrorTemplate(message);
   }
 
   populatestoryDetailComments(message, comments) {
@@ -148,8 +144,6 @@ export default class storyDetailPage {
 
   postNewCommentSuccessfully(message) {
     console.log(message);
-
-    this.#presenter.getCommentsList();
     this.clearForm();
   }
 
@@ -202,12 +196,12 @@ export default class storyDetailPage {
     });
   }
 
-  showstoryDetailLoading() {
+  showStoryDetailLoading() {
     document.getElementById('story-detail-loading-container').innerHTML =
       generateLoaderAbsoluteTemplate();
   }
 
-  hidestoryDetailLoading() {
+  hideStoryDetailLoading() {
     document.getElementById('story-detail-loading-container').innerHTML = '';
   }
 

@@ -136,42 +136,6 @@ export async function storeNewStory({
   };
 }
 
-// **Fungsi untuk mendapatkan komentar cerita**
-export async function getAllCommentsByStoryId(storyId) {
-  const accessToken = getAccessToken();
-
-  const fetchResponse = await fetch(ENDPOINTS.STORY_COMMENTS_LIST(storyId), {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
-  const json = await fetchResponse.json();
-
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-  };
-}
-
-// **Fungsi untuk menyimpan komentar cerita**
-export async function storeNewCommentByStoryId(storyId, { body }) {
-  const accessToken = getAccessToken();
-  const data = JSON.stringify({ body });
-
-  const fetchResponse = await fetch(ENDPOINTS.STORE_NEW_STORY_COMMENT(storyId), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${accessToken}`,
-    },
-    body: data,
-  });
-  const json = await fetchResponse.json();
-
-  return {
-    ...json,
-    ok: fetchResponse.ok,
-  };
-}
-
 // **Fungsi untuk berlangganan notifikasi push**
 export async function subscribePushNotification({ endpoint, keys: { p256dh, auth } }) {
   const accessToken = getAccessToken();

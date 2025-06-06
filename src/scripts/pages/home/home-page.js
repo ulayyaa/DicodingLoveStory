@@ -1,6 +1,6 @@
 import {
   generateLoaderAbsoluteTemplate,
-  generatestoryItemTemplate,
+  generateStoryItemTemplate,
   generateStoriesListEmptyTemplate,
   generateStoriesListErrorTemplate,
 } from '../../templates';
@@ -54,7 +54,7 @@ export default class HomePage {
       const popupOptions = { content: story.title };
       this.#map.addMarker(coordinate, markerOptions, popupOptions);
     }
-      return accumulator.concat( generatestoryItemTemplate(story));
+      return accumulator.concat( generateStoryItemTemplate(story));
         },'');
 
     document.getElementById('stories-list').innerHTML = `
