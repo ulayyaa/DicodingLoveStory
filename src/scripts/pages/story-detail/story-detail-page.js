@@ -91,7 +91,7 @@ export default class storyDetailPage {
     document.getElementById('story-detail').innerHTML = generateStoryDetailErrorTemplate(message);
   }
 
-  populatestoryDetailComments(message, comments) {
+  populateStoryDetailComments(message, comments) {
     if (comments.length <= 0) {
       this.populateCommentsListEmpty();
       return;

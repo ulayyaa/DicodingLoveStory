@@ -27,15 +27,15 @@ export default class HomePresenter {
 
       if (!response.ok) {
         console.error('initialGalleryAndMap: response:', response);
-        this.#view.populatestoriesListError(response.message);
+        this.#view.populateStoriesListError(response.message);
         return;
       }
       
-      this.#view.populatestoriesList(response.message, response.listStory);
+      this.#view.populateStoriesList(response.message, response.listStory);
 
     } catch (error) {
       console.error('initialGalleryAndMap: error:', error);
-      this.#view.populatestoriesListError(error.message);
+      this.#view.populateStoriesListError(error.message);
     } finally {
       this.#view.hideLoading();
     }

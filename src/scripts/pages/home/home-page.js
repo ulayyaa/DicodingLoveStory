@@ -41,9 +41,9 @@ export default class HomePage {
     await this.#presenter.initialGalleryAndMap();
   }
 
-  populatestoriesList(message, stories) {
+  populateStoriesList(message, stories) {
     if (stories.length <= 0) {
-      this.populatestoriesListEmpty();
+      this.populateStoriesListEmpty();
       return;
     }
 
