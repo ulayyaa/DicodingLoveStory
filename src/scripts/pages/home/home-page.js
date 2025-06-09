@@ -67,7 +67,7 @@ export default class HomePage {
   }
 
   populateStoriesListError(message) {
-    document.getElementById('stories-list').innerHTML = generatestoriesListErrorTemplate(message);
+    document.getElementById('stories-list').innerHTML = generateStoriesListErrorTemplate(message);
   }
 
   async initialMap() {

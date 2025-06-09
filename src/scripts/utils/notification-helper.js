@@ -101,7 +101,7 @@ export async function subscribe() {
     const registration = await navigator.serviceWorker.getRegistration();
     pushSubscription = await registration.pushManager.subscribe(generateSubscribeOptions());
     const { endpoint, keys } = pushSubscription.toJSON();
-     const response = await subscribePushNotification({ endpoint, keys });
+    const response = await subscribePushNotification({ endpoint, keys });
     if (!response.ok) {
       console.error('subscribe: response:', response);
       alert(failureSubscribeMessage);
