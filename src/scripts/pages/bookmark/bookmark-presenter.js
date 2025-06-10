@@ -8,7 +8,7 @@ export default class BookmarkPresenter {
     this.#view = view;
     this.#model = model;
   }
- 
+  
   async showStoriesListMap() {
     this.#view.showMapLoading();
     try {

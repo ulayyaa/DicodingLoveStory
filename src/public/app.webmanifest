@@ -85,9 +85,9 @@
   ],
   "shortcuts": [
     {
-      "name": "Laporan Baru",
+      "name": "Cerita Baru",
       "short_name": "Baru",
-      "description": "Membuat laporan kerusakan baru.",
+      "description": "Membuat cerita cinta baru.",
       "url": "/?source=pwa#/new",
       "icons": [
         {
@@ -98,9 +98,9 @@
       ]
     },
     {
-      "name": "Laporan Tersimpan",
+      "name": "Cerita Tersimpan",
       "short_name": "Tersimpan",
-      "description": "Lihat daftar laporan tersimpan.",
+      "description": "Lihat daftar cerita tersimpan.",
       "url": "/?source=pwa#/bookmark",
       "icons": [
         {

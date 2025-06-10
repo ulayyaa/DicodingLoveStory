@@ -136,4 +136,7 @@ export default class storyDetailPresenter {
 
     this.#view.renderSaveButton();
   }
+  #isReportSaved() {
+    return false;
+  }
 }
