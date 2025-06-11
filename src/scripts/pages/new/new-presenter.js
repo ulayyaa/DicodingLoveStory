@@ -36,9 +36,6 @@ export default class NewPresenter {
         return;
       }
 
-      // No need to wait response
-      this.#notifyToAllUser(response.data.id);
-
       this.#view.storeSuccessfully(response.message, response.data);
     } catch (error) {
       console.error('postNewStory: error:', error);

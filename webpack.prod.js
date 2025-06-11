@@ -34,8 +34,5 @@ module.exports = merge(common, {
       swSrc: path.resolve(__dirname, 'src/scripts/sw.js'),
       swDest: 'sw.bundle.js',
     }),
-    new GenerateSW({
-      swDest: 'sw.workbox.bundle.js',
-    }),
   ],
 });
