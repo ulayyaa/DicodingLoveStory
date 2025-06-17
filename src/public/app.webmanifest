@@ -7,11 +7,12 @@
   "description": "Aplikasi untuk peserta Dicoding curhat tentang masalah cinta yang mereka alami",
   "background_color": "#FFFFFF",
   "theme_color": "#d97706",
+  "display": "standalone",
   "icons": [
     {
       "src": "images/logo.png",
       "type": "image/png",
-      "sizes": "144x144",
+      "sizes": "200x200",
       "purpose": "any"
     },
     {
@@ -48,37 +49,37 @@
   "screenshots": [
     {
       "src": "images/screenshots/CityCareApp_001.png",
-      "sizes": "1920x1043",
+      "sizes": "1280x695",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
       "src": "images/screenshots/CityCareApp_002.png",
-      "sizes": "1920x1043",
+      "sizes": "1280x695",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
       "src": "images/screenshots/CityCareApp_003.png",
-      "sizes": "1920x1043",
+      "sizes": "1280x695",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
       "src": "images/screenshots/CityCareApp_004.png",
-      "sizes": "1080x2280",
+      "sizes": "600x1267",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
       "src": "images/screenshots/CityCareApp_005.png",
-      "sizes": "1080x2280",
+      "sizes": "600x1267",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
       "src": "images/screenshots/CityCareApp_006.png",
-      "sizes": "1080x2280",
+      "sizes": "600x1267",
       "type": "image/png",
       "form_factor": "narrow"
     }

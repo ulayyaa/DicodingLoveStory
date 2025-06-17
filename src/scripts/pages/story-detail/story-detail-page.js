@@ -60,7 +60,7 @@ export default class storyDetailPage {
 
     this.#setupForm();
 
-    this.#presenter.showStorydetail();
+    this.#presenter.showStoryDetail();
   }
 
   async populateStoryDetailAndInitialMap(message, story) {
