@@ -12,7 +12,7 @@
     {
       "src": "images/logo.png",
       "type": "image/png",
-      "sizes": "200x200",
+      "sizes": "144x144",
       "purpose": "any"
     },
     {
@@ -49,19 +49,19 @@
   "screenshots": [
     {
       "src": "images/screenshots/CityCareApp_001.png",
-      "sizes": "1280x695",
+      "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
       "src": "images/screenshots/CityCareApp_002.png",
-      "sizes": "1280x695",
+      "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },
     {
       "src": "images/screenshots/CityCareApp_003.png",
-      "sizes": "1280x695",
+      "sizes": "1920x1043",
       "type": "image/png",
       "form_factor": "wide"
     },

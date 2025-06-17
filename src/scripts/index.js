@@ -10,7 +10,7 @@ import { registerServiceWorker } from './utils';
 import Camera from './utils/camera';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const app = new App({
+  window.app = new App({
     content: document.getElementById('main-content'),
     drawerButton: document.getElementById('drawer-button'),
     drawerNavigation: document.getElementById('navigation-drawer'),
@@ -29,15 +29,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       mainContent.focus();
     }
   });
-  await app.renderPage();
+  await window.app.renderPage();
 await registerServiceWorker();
-
 // for demonstration purpose-only
   console.log('Berhasil mendaftarkan service worker.');
  
   window.addEventListener('hashchange', async () => {
     await app.renderPage();
-
       // Stop all active media
     Camera.stopAllStreams();
   });

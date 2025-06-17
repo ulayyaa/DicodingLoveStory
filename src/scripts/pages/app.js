@@ -110,33 +110,33 @@ export default class App {
     });
   }
 
-  async renderPage() {
-    const url = getActiveRoute();
-    console.log(`Rute yang aktif: ${url}`);
-    const route = routes[url];
-
-    // Get page instance
-    const page = route();
-    if (!page) {
-      console.error(`Halaman tidak memiliki metode render untuk: ${url}`);
+ async renderPage() {
+    let url = getActiveRoute();
+    console.log('Active route:', url);
+    const routeFunction = routes[url];
+    if (!routeFunction) {
+      console.log(`Route ${url} tidak ditemukan, redirect ke login`);
+      location.hash = '/login';
       return;
     }
-
+    const page = routeFunction();
+    if (!page || typeof page.render !== 'function') {
+      console.log(`Page tidak tersedia atau redirect terjadi, URL: ${url}`);
+      return;
+    }
     const transition = transitionHelper({
       updateDOM: async () => {
         this.#content.innerHTML = await page.render();
         page.afterRender();
       },
     });
-
     transition.ready.catch(console.error);
     transition.updateCallbackDone.then(() => {
       scrollTo({ top: 0, behavior: 'instant' });
       this.#setupNavigationList();
-
-       if (isServiceWorkerAvailable()) {
+      if (isServiceWorkerAvailable()) {
         this.#setupPushNotification();
       }
     });
-  }
+ }
 }

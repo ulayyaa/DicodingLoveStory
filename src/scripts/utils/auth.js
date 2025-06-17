@@ -52,12 +52,19 @@ export function checkUnauthenticatedRouteOnly(page) {
 
 export function checkAuthenticatedRoute(page) {
   const isLogin = !!getAccessToken();
-
   if (!isLogin) {
-    location.hash = '/login';
+    // Ganti hash
+    if (location.hash !== '#/login') {
+      location.hash = '/login';
+    }
+    // Paksa render ulang
+    setTimeout(() => {
+      if (window.app && typeof window.app.renderPage === 'function') {
+        window.app.renderPage();
+      }
+    }, 0);
     return null;
   }
-
   return page;
 }
 
