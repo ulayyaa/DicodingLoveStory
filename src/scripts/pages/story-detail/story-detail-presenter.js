@@ -110,7 +110,7 @@ export default class storyDetailPresenter {
   async saveStory() {
     try {
       const story = await this.#apiModel.getStoryById(this.#storyId);
-      await this.#dbModel.putStory(story.data);
+      await this.#dbModel.putStory(story.story);
       this.#view.saveToBookmarkSuccessfully('Success to save to bookmark');
     } catch (error) {
       console.error('saveStory: error:', error);
@@ -128,14 +128,6 @@ export default class storyDetailPresenter {
     }
   }
 
-  showSaveButton() {
-    if (this.#isStorySaved()) {
-      this.#view.renderRemoveButton();
-      return;
-    }
-
-    this.#view.renderSaveButton();
-  }
   #isReportSaved() {
     return false;
   }

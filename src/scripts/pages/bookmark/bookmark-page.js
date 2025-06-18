@@ -48,17 +48,16 @@ export default class BookmarkPage {
  
     const html = stories.reduce((accumulator, story) => {
       if (this.#map) {
-        const coordinate = [story.location.latitude, story.location.longitude];
+        const coordinate = [story.lat, story.lon];
         const markerOptions = { alt: story.title };
         const popupOptions = { content: story.title };
         this.#map.addMarker(coordinate, markerOptions, popupOptions);
       }
-
       return accumulator.concat(
         generateStoryItemTemplate({
           ...story,
-          placeNameLocation: story.location.placeName,
-          storyerName: story.storyer.name,
+          placeNameLocation: story.title,
+          storyerName: story.name,
         }),
       );
     }, '');
